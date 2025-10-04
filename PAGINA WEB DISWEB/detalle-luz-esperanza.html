@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Luz y Esperanza - Proyecto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("imgs/Farmacia/fondo.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #ffffff;
+        padding: 2rem 5%;
+      }
+
+      h1 {
+        margin-top: 0;
+        text-align: center;
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+        color: #0051ff;
+      }
+
+      .descripcion {
+        font-size: 1.5rem;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        text-align: justify;
+        color: #1900ff;
+      }
+
+      .galeria {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        justify-content: center;
+      }
+
+      .galeria img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        border: 2px solid #00ccff;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        opacity: 0;
+        transform: scale(0.9);
+        animation: fadeIn 0.6s forwards;
+      }
+
+      .galeria img:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .galeria img:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .galeria img:hover {
+        transform: scale(1.05);
+      }
+
+      .volver {
+        display: inline-block;
+        margin-top: 2rem;
+        color: #2f00ff;
+        text-decoration: underline;
+        background: transparent;
+        border: 2px solid #00ccff;
+        padding: 0.5rem 1.2rem;
+        border-radius: 25px;
+        transition: 0.3s;
+      }
+
+      .volver:hover {
+        background: #00ccff;
+        color: #000;
+      }
+
+      /* Estilos del visor (modal/lightbox) */
+      .visor {
+        display: none;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .visor-img {
+        width: 1100px;
+        height: 550px;
+        object-fit: fill;
+        border: 3px solid #00ccff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px #00ccff;
+      }
+
+      .visor .cerrar {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        color: white;
+        font-size: 3rem;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .visor .cerrar:hover {
+        color: #00ccff;
+      }
+
+      /* --- Ajustes generales para móviles y tablets --- */
+      @media (max-width: 1024px) {
+        h1 {
+          font-size: 3rem;
+        }
+
+        .descripcion {
+          font-size: 1.2rem;
+        }
+
+        .visor-img {
+          width: 90%;
+          height: auto;
+          max-height: 70%;
+          object-fit: contain;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1.5rem 3%;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .descripcion {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+
+        .galeria {
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 1rem;
+        }
+
+        .volver {
+          font-size: 0.9rem;
+          padding: 0.4rem 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .descripcion {
+          font-size: 0.95rem;
+        }
+
+        .galeria {
+          grid-template-columns: 1fr;
+          gap: 0.8rem;
+        }
+
+        .visor-img {
+          width: 95%;
+          max-height: 65%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html#projects" class="volver">← Volver a Proyectos</a>
+
+    <h1>Proyecto: Luz y Esperanza</h1>
+
+    <p class="descripcion">
+      Sistema web desarrollado en C# para la gestión integral de una farmacia.
+      Permite administrar ventas, inventario, control de usuarios y operaciones
+      por sucursal. Incluye interfaces intuitivas, reportes y módulos de
+      seguridad. Diseñado para optimizar el flujo de trabajo y facilitar el
+      control en tiempo real.
+    </p>
+
+    <div class="galeria">
+      <img src="imgs/Farmacia/Farmacia 1.jpg" alt="Panel de control" />
+      <img src="imgs/Farmacia/Farmacia 2.jpg" alt="Inventario" />
+      <img src="imgs/Farmacia/Farmacia 3.jpg" alt="Gestión de ventas" />
+      <img
+        src="imgs/Farmacia/Farmacia 4.jpg"
+        alt="Historial de transacciones"
+      />
+      <img src="imgs/Farmacia/Farmacia 5.jpg" alt="Usuarios y permisos" />
+      <img src="imgs/Farmacia/Farmacia 6.jpg" alt="Sucursal Cochabamba" />
+      <img src="imgs/Farmacia/Farmacia 7.jpg" alt="Sucursal La Paz" />
+      <img src="imgs/Farmacia/Farmacia 8.jpg" alt="Informe de ventas" />
+      <img src="imgs/Farmacia/Farmacia 9.jpg" alt="Pantalla de login" />
+      <img src="imgs/Farmacia/Farmacia 10.jpg" alt="Interfaz moderna" />
+    </div>
+
+    <a href="index.html#projects" class="volver">← Volver a Proyectos</a>
+
+    <!-- Modal para mostrar imagen ampliada -->
+    <div id="visor" class="visor">
+      <span class="cerrar">&times;</span>
+      <img class="visor-img" src="" alt="Ampliada" />
+    </div>
+
+    <!-- JavaScript para visor -->
+    <script>
+      const visor = document.getElementById("visor");
+      const visorImg = document.querySelector(".visor-img");
+      const cerrar = document.querySelector(".cerrar");
+      const imagenes = document.querySelectorAll(".galeria img");
+
+      // Función para mostrar el visor al hacer clic
+      function activarModal(img) {
+        img.addEventListener("click", () => {
+          visor.style.display = "flex";
+          visorImg.src = img.src;
+          visorImg.alt = img.alt;
+        });
+      }
+
+      // Activar modal para todas las imágenes inicialmente
+      imagenes.forEach((img) => activarModal(img));
+
+      cerrar.addEventListener("click", () => {
+        visor.style.display = "none";
+      });
+
+      visor.addEventListener("click", (e) => {
+        if (e.target !== visorImg && e.target !== cerrar) {
+          visor.style.display = "none";
+        }
+      });
+
+      // CENTRAR últimas 1 o 2 imágenes (sin perder eventos)
+      const galeria = document.querySelector(".galeria");
+      const columnas = 3;
+      const total = imagenes.length;
+      const resto = total % columnas;
+
+      if (resto !== 0) {
+        const start = total - resto;
+        const centrarWrapper = document.createElement("div");
+        centrarWrapper.style.gridColumn = `span ${columnas}`;
+        centrarWrapper.style.display = "flex";
+        centrarWrapper.style.justifyContent = "center";
+        centrarWrapper.style.gap = "1.5rem";
+        centrarWrapper.style.marginTop = "1.5rem";
+
+        for (let i = start; i < total; i++) {
+          const original = imagenes[i];
+          const wrapper = document.createElement("div");
+          wrapper.style.width = "420px";
+          wrapper.appendChild(original); // mover el nodo, no clonarlo
+          centrarWrapper.appendChild(wrapper);
+        }
+
+        galeria.appendChild(centrarWrapper);
+      }
+    </script>
+  </body>
+</html>

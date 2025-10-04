@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sistema Administrativo Restaurante - Buenazo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: #fff8f0;
+        font-family: "Segoe UI", sans-serif;
+        color: #333;
+        padding: 2rem;
+        position: relative;
+        z-index: 0;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-image: url("imgs/Buenazo-Hermano/Buenazo LOGO.jpg");
+        background-repeat: repeat;
+        background-size: 300px 300px;
+        z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        backdrop-filter: blur(5px) brightness(0.9);
+        background-color: rgba(255, 255, 255, 0.12);
+        z-index: -1;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #ccceeb;
+      }
+
+      .volver-btn {
+        display: block;
+        width: fit-content;
+        margin: 2rem auto;
+        padding: 0.75rem 1.5rem;
+        background-color: #b02e0c;
+        color: white;
+        font-weight: bold;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      .volver-btn:hover {
+        background-color: #a12500;
+        transform: scale(1.05);
+      }
+
+      .descripcion {
+        max-width: 900px;
+        margin: 0 auto 3rem auto;
+        font-size: 1.3rem;
+        line-height: 1.8;
+        text-align: justify;
+        color: #ffffff;
+      }
+
+      .galeria {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        padding: 0 2rem;
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        height: 260px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 12px;
+        border: 2px solid #d36e4d;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover {
+        transform: scale(1.03);
+      }
+
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: fill;
+        object-position: center;
+        display: block;
+      }
+
+      .card .caption {
+        padding: 0.5rem;
+        background-color: #fff;
+        font-weight: bold;
+        color: #b02e0c;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+      }
+
+      .visor {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.9);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .visor img {
+        height: 80%;
+        width: 80%;
+        border-radius: 10px;
+        border: 2px solid #00ccff;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .visor img:hover {
+        transform: scale(1.05);
+      }
+
+      .visor .cerrar {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        font-size: 3rem;
+        color: #fff;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html#projects" class="volver-btn">← Volver a Proyectos</a>
+
+    <h1>Sistema Administrativo para Restaurante</h1>
+    <h1>Buenazo Almuerzos Saludables</h1>
+
+    <p class="descripcion">
+      Este sistema fue desarrollado en Microsoft Excel con macros (VBA) para
+      gestionar de forma completa un restaurante de almuerzos saludables.
+      Incluye inicio de sesión, menú principal, registro de compras, control de
+      inventario, ventas, reportes, control de stock y mucho más. Está diseñado
+      para mejorar la eficiencia del negocio y centralizar toda la operación del
+      restaurante en una sola herramienta. Ideal para pequeños y medianos
+      emprendimientos gastronómicos que deseen una solución sin depender de
+      software costoso.
+    </p>
+
+    <div class="galeria">
+      <!-- Tarjetas completas -->
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 1.jpg" alt="Login" />
+        <div class="caption">Tarjeta de Presentación</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 2.jpg" alt="Menú" />
+        <div class="caption">Login de Usuarios</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 3.jpg" alt="Ventas" />
+        <div class="caption">Menú Principal</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 4.jpg" alt="Inventario" />
+        <div class="caption">Menú de Usuario</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 5.jpg" alt="Reportes" />
+        <div class="caption">Menú de Productos</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 6.jpg" alt="Stock" />
+        <div class="caption">Menú de Venta</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 7.jpg" alt="Login" />
+        <div class="caption">Menú de Reportes</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 8.jpg" alt="Login" />
+        <div class="caption">Busqueda de Productos</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 9.jpg" alt="Login" />
+        <div class="caption">Registro de Productos</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 10.jpg" alt="Login" />
+        <div class="caption">Control de Ventas</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 11.jpg" alt="Login" />
+        <div class="caption">Reporte de ventas</div>
+      </div>
+      <div class="card">
+        <img src="imgs/Buenazo-Hermano/Buenazo 12.jpg" alt="Login" />
+        <div class="caption">Menu Editable</div>
+      </div>
+    </div>
+
+    <a href="index.html#projects" class="volver-btn">← Volver a Proyectos</a>
+
+    <div class="visor" id="visor">
+      <span class="cerrar" onclick="cerrarVisor()">&times;</span>
+      <img id="visorImg" src="" alt="Vista ampliada" />
+    </div>
+
+    <script>
+      const visor = document.getElementById("visor");
+      const visorImg = document.getElementById("visorImg");
+      const cards = document.querySelectorAll(".card img");
+
+      cards.forEach((img) => {
+        img.addEventListener("click", () => {
+          visorImg.src = img.src;
+          visor.style.display = "flex";
+        });
+      });
+
+      function cerrarVisor() {
+        visor.style.display = "none";
+        visorImg.src = "";
+      }
+
+      visor.addEventListener("click", (e) => {
+        if (e.target === visor) cerrarVisor();
+      });
+    </script>
+  </body>
+</html>
