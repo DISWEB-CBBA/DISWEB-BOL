@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Cerrar menú al hacer clic en un enlace (móviles)
   document.querySelectorAll(".nav-link").forEach((link) => {
     link.addEventListener("click", () => {
       if (window.innerWidth <= 768) {
@@ -124,7 +123,6 @@ document.addEventListener("DOMContentLoaded", function () {
       contactForm.reset();
     });
 
-    // === Visibilidad con IntersectionObserver ===
     const observerForm = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -186,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
     subtitleObserver.observe(subtitle);
   }
 
-  // === 8. ANIMACIONES FADE-IN AL ENTRAR EN VIEWPORT ===
+  // === 8. ANIMACIONES FADE-IN ===
   const fadeElements = document.querySelectorAll(
     ".service-card, .about-content, .contact-info, .contact-form, .fade-in-up, .skills-image"
   );
@@ -210,10 +208,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // === 9. ANIMACIÓN DE BARRAS DE HABILIDAD EN BUCLE ===
+  // === 9. ANIMACIÓN DE BARRAS ===
   function animateSkillBars() {
     const skillBars = document.querySelectorAll(".bar-fill");
-
     skillBars.forEach((bar) => {
       const finalWidth = bar.getAttribute("data-width") || "0";
       bar.style.transition = "none";
@@ -222,18 +219,13 @@ document.addEventListener("DOMContentLoaded", function () {
       bar.style.transition = "width 2s ease-in-out";
       bar.style.width = finalWidth;
     });
-
     setTimeout(animateSkillBars, 5000);
   }
 
-  // Solo animar en dispositivos no móviles para mejor performance
-  if (window.innerWidth > 768) {
-    animateSkillBars();
-  }
+  if (window.innerWidth > 768) animateSkillBars();
 
-  // === 10. ANIMACIÓN DEL LOGO AL ENTRAR EN VIEWPORT ===
+  // === 10. ANIMACIÓN DEL LOGO ===
   const animatedLogo = document.querySelector(".animated-logo");
-
   if (animatedLogo) {
     const observerLogo = new IntersectionObserver(
       (entries) => {
@@ -247,16 +239,13 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       { threshold: 0.5 }
     );
-
     observerLogo.observe(animatedLogo);
   }
 
-  // === 11. DETECCIÓN DE DISPOSITIVO Y AJUSTES ===
+  // === 11. AJUSTE PARA MÓVILES ===
   function adjustForMobile() {
     const isMobile = window.innerWidth <= 768;
     const logo = document.querySelector(".logo img");
-
-    // Ajustar animaciones para móviles
     if (isMobile && logo) {
       logo.style.animation =
         "slideLogoMobile 3s ease-in-out infinite alternate";
@@ -265,22 +254,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Ejecutar al cargar y al redimensionar
   window.addEventListener("load", adjustForMobile);
   window.addEventListener("resize", adjustForMobile);
 
-  // === 12. MEJORAR RENDIMIENTO EN MÓVILES ===
+  // === 12. OPTIMIZACIÓN TOUCH ===
   if ("ontouchstart" in window) {
-    // Optimizar para touch
     document.querySelectorAll(".service-card").forEach((card) => {
       card.style.cursor = "pointer";
     });
-
-    // Reducir efectos intensos en móviles
     document.documentElement.style.setProperty("--primary-color", "#00ccdd");
   }
 
-  // === 13. MENSAJE DE DESCARGA ===
+  // === 13. DESCARGA PDF ===
   const enlacesPDF = document.querySelectorAll(".descargar-pdf");
   const mensaje = document.getElementById("mensaje-descarga");
 
@@ -289,23 +274,93 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       const url = enlace.href;
       const nombreArchivo = enlace.download || "documento.pdf";
-
-      // Mostrar mensaje
       mensaje.style.display = "block";
       mensaje.textContent = `Descargando ${nombreArchivo}...`;
-
-      // Descargar archivo
       const a = document.createElement("a");
       a.href = url;
       a.download = nombreArchivo;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-
-      // Ocultar mensaje después de 2 segundos
       setTimeout(() => {
         mensaje.style.display = "none";
       }, 2000);
+    });
+  });
+
+  // === 14. MODAL DE VIDEO CON BOTÓN DE SONIDO (MULTIVIDEO) ===
+  document.querySelectorAll(".service-card").forEach((card) => {
+    card.addEventListener("click", () => {
+      const videoSrc = card.getAttribute("data-video");
+      if (!videoSrc) return;
+
+      // Crear modal
+      const modal = document.createElement("div");
+      modal.classList.add("video-modal");
+      modal.innerHTML = `
+      <div class="video-content" style="
+          position: relative;
+          width: 900px; /* tamaño fijo del modal */
+          height: 500px;
+          background: #000;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+        ">
+        <video id="serviceVideo"
+          autoplay muted playsinline
+          style="
+            width: 100%;
+            height: 100%;
+            object-fit: fill; /* se encaja completamente, aunque se distorsione */
+            border-radius: 12px;
+          ">
+          <source src="${videoSrc}" type="video/mp4">
+          Tu navegador no soporta video HTML5.
+        </video>
+        <button class="unmute-btn" style="
+          position: absolute;
+          bottom: 15px;
+          right: 15px;
+          background: rgba(0,0,0,0.6);
+          color: #00ffff;
+          border: none;
+          border-radius: 8px;
+          padding: 10px 16px;
+          cursor: pointer;
+          font-size: 14px;
+        ">🔊 Activar sonido</button>
+      </div>
+    `;
+      document.body.appendChild(modal);
+
+      const video = modal.querySelector("#serviceVideo");
+      const unmuteBtn = modal.querySelector(".unmute-btn");
+
+      // Reproducir automáticamente sin sonido
+      video.play().catch(() => {
+        console.warn(
+          "El navegador bloqueó el autoplay, requiere interacción del usuario."
+        );
+      });
+
+      // Activar sonido
+      unmuteBtn.addEventListener("click", () => {
+        video.muted = false;
+        video.volume = 1;
+        video.play();
+        unmuteBtn.style.display = "none";
+      });
+
+      // Cerrar automáticamente al terminar
+      video.addEventListener("ended", () => {
+        modal.remove();
+      });
+
+      // Cerrar si hace clic fuera del video
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.remove();
+      });
     });
   });
 });
